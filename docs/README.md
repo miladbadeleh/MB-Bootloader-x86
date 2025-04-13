@@ -1,4 +1,4 @@
-# MyOS - A Custom x86 Bootloader and Kernel
+# MB OS - A Custom x86 Bootloader and Kernel
 
 This project implements a complete bootloader and kernel system for x86 architecture, featuring:
 - FAT12 filesystem support
