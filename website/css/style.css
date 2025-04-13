@@ -83,8 +83,7 @@ nav a.active {
 
 .btn {
     display: inline-block;
-    padding: 10px 20px;
-    border-radius: 5px;
+    
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s;
@@ -168,7 +167,7 @@ nav a.active {
     transform: translateY(-10px);
 }
 
-.highlight-card .icon {
+.highlight-card .icon{
     width: 60px;
     height: 60px;
     margin: 0 auto 20px;
@@ -177,6 +176,11 @@ nav a.active {
     justify-content: center;
     background-color: rgba(74, 107, 255, 0.1);
     border-radius: 50%;
+}
+
+.icon-image {
+    width: 30px;
+    height: 30px;
 }
 
 .highlight-card h3 {
