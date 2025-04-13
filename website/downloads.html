@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads - MyOS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/MB.png">
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <header class="fade-in">
+        <div class="container">
+            <div class="logo">
+                <img src="images/MB.png" alt="MB OS Logo">
+                <span>MyOS</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="documentation.html">Docs</a></li>
+                    <li><a href="downloads.html" class="btn active">Download</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header slide-up">
+            <div class="container">
+                <h1>Download MB OS</h1>
+                <p class="subtitle">Get started with our latest release</p>
+            </div>
+        </section>
+
+        <section class="download-options">
+            <div class="container">
+                <div class="download-card fade-in">
+                    <div class="download-badge">Latest</div>
+                    <h3>MyOS 1.0.0</h3>
+                    <p class="release-date">Released: October 15, 2023</p>
+                    <div class="download-meta">
+                        <span class="tag">Stable</span>
+                        <span class="tag">Production</span>
+                    </div>
+                    <p class="download-desc">First stable release with all core features including bootloader, kernel, and basic drivers.</p>
+                    <div class="download-links">
+                        <a href="#" class="btn primary">
+                            <img src="images/download-icon.svg" alt="Download">
+                            Download Floppy Image
+                        </a>
+                        <a href="#" class="btn secondary">
+                            <img src="images/github-icon.svg" alt="GitHub">
+                            Source Code
+                        </a>
+                    </div>
+                    <div class="checksum">
+                        <p>SHA256: a1b2c3d4e5f6...7890</p>
+                    </div>
+                </div>
+
+                <div class="version-info fade-in delay-1">
+                    <h3>System Requirements</h3>
+                    <ul>
+                        <li><strong>CPU:</strong> i386 compatible or newer</li>
+                        <li><strong>RAM:</strong> 64MB minimum</li>
+                        <li><strong>Storage:</strong> 1.44MB floppy drive or image</li>
+                        <li><strong>Emulator:</strong> QEMU or Bochs recommended</li>
+                    </ul>
+
+                    <h3>Installation</h3>
+                    <ol>
+                        <li>Download the floppy image</li>
+                        <li>Run in emulator: <code>qemu-system-i386 -fda myos.flp</code></li>
+                        <li>Or write to USB: <code>dd if=myos.flp of=/dev/sdX bs=512</code></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="previous-releases">
+            <div class="container">
+                <h2 class="section-title">Previous Releases</h2>
+                <div class="releases-grid">
+                    <div class="release-card slide-up">
+                        <h3>MyOS 0.9.0 Beta</h3>
+                        <p class="release-date">August 30, 2023</p>
+                        <p>Beta release with complete bootloader and basic kernel functionality.</p>
+                        <a href="#" class="btn small">Download</a>
+                    </div>
+                    <div class="release-card slide-up delay-1">
+                        <h3>MyOS 0.5.0 Alpha</h3>
+                        <p class="release-date">June 12, 2023</p>
+                        <p>First public alpha with bootloader and minimal kernel.</p>
+                        <a href="#" class="btn small">Download</a>
+                    </div>
+                    <div class="release-card slide-up delay-2">
+                        <h3>MyOS 0.1.0 Preview</h3>
+                        <p class="release-date">March 5, 2023</p>
+                        <p>Initial proof-of-concept with working bootloader.</p>
+                        <a href="#" class="btn small">Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="build-from-source">
+            <div class="container">
+                <h2 class="section-title">Build From Source</h2>
+                <div class="build-steps">
+                    <div class="build-step fade-in">
+                        <div class="step-number">1</div>
+                        <h3>Clone Repository</h3>
+                        <pre><code class="language-bash">git clone https://github.com/username/myos.git
+cd myos</code></pre>
+                    </div>
+                    <div class="build-step fade-in delay-1">
+                        <div class="step-number">2</div>
+                        <h3>Install Dependencies</h3>
+                        <pre><code class="language-bash"># On Ubuntu/Debian
+sudo apt-get install nasm qemu make</code></pre>
+                    </div>
+                    <div class="build-step fade-in delay-2">
+                        <div class="step-number">3</div>
+                        <h3>Build System</h3>
+                        <pre><code class="language-bash">make all</code></pre>
+                    </div>
+                    <div class="build-step fade-in delay-3">
+                        <div class="step-number">4</div>
+                        <h3>Run in Emulator</h3>
+                        <pre><code class="language-bash">make run</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>MyOS</h4>
+                    <p>A lightweight x86 operating system developed for educational purposes and low-level experimentation.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="https://github.com/username/myos">GitHub Repository</a></li>
+                        <li><a href="https://wiki.osdev.org">OSDev Wiki</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://forum.osdev.org">OSDev Forum</a></li>
+                        <li><a href="https://discord.gg/osdev">Discord</a></li>
+                        <li><a href="mailto:contact@myos.dev">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MyOS Project. Released under MIT License.</p>
+                <div class="social-links">
+                    <a href="#"><img src="images/github-icon.svg" alt="GitHub"></a>
+                    <a href="#"><img src="images/twitter-icon.svg" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/particles.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - MyOS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/MB.png">
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <header class="fade-in">
+        <div class="container">
+            <div class="logo">
+                <img src="images/MB.png" alt="MB OS Logo">
+                <span>MB OS</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html" class="active">Features</a></li>
+                    <li><a href="documentation.html">Docs</a></li>
+                    <li><a href="downloads.html" class="btn">Download</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header slide-up">
+            <div class="container">
+                <h1>MB OS Features</h1>
+                <p class="subtitle">Explore the capabilities of our lightweight operating system</p>
+            </div>
+        </section>
+
+        <section class="feature-showcase">
+            <div class="container">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <img src="images/boot-icon.svg" alt="Bootloader">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Custom Bootloader</h3>
+                        <p>Our dual-stage bootloader provides complete control from the first sector, with FAT12 filesystem support and memory detection before loading the kernel.</p>
+                        <ul class="feature-list">
+                            <li>512-byte stage1 bootloader</li>
+                            <li>FAT12 filesystem navigation</li>
+                            <li>Memory detection via INT 0x15</li>
+                            <li>Protected mode switching</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in delay-1">
+                    <div class="feature-icon">
+                        <img src="images/kernel-icon.svg" alt="Kernel">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Minimal Kernel</h3>
+                        <p>The 32-bit protected mode kernel provides essential services while maintaining a small footprint.</p>
+                        <ul class="feature-list">
+                            <li>Basic memory management</li>
+                            <li>Interrupt handling (IDT)</li>
+                            <li>Hardware abstraction</li>
+                            <li>Text-mode console</li>
+                            <li>Basic device drivers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in delay-2">
+                    <div class="feature-icon">
+                        <img src="images/hardware-icon.svg" alt="Hardware">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Hardware Support</h3>
+                        <p>MyOS includes drivers for essential PC hardware components.</p>
+                        <ul class="feature-list">
+                            <li>8259 PIC controller</li>
+                            <li>8253/8254 PIT</li>
+                            <li>PS/2 keyboard</li>
+                            <li>VGA text mode</li>
+                            <li>Serial port (COM1)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in delay-3">
+                    <div class="feature-icon">
+                        <img src="images/dev-icon.svg" alt="Development">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Development Features</h3>
+                        <p>Designed with developers in mind, MyOS provides tools for system programming.</p>
+                        <ul class="feature-list">
+                            <li>Assembly and C development</li>
+                            <li>Debugging via serial port</li>
+                            <li>Comprehensive documentation</li>
+                            <li>Build system with Makefiles</li>
+                            <li>QEMU and Bochs support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tech-specs">
+            <div class="container">
+                <h2 class="section-title">Technical Specifications</h2>
+                <div class="specs-grid">
+                    <div class="spec-card slide-up">
+                        <h3>Architecture</h3>
+                        <ul>
+                            <li><strong>CPU:</strong> x86 (32-bit protected mode)</li>
+                            <li><strong>Memory:</strong> 1MB+ required</li>
+                            <li><strong>Boot:</strong> BIOS bootloader</li>
+                            <li><strong>Filesystem:</strong> FAT12</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card slide-up delay-1">
+                        <h3>Development</h3>
+                        <ul>
+                            <li><strong>Languages:</strong> NASM, C</li>
+                            <li><strong>Toolchain:</strong> GCC cross-compiler</li>
+                            <li><strong>Emulators:</strong> QEMU, Bochs</li>
+                            <li><strong>Build:</strong> GNU Make</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card slide-up delay-2">
+                        <h3>Requirements</h3>
+                        <ul>
+                            <li><strong>Host OS:</strong> Linux, macOS, WSL</li>
+                            <li><strong>RAM:</strong> 64MB+ recommended</li>
+                            <li><strong>Storage:</strong> 1.44MB floppy image</li>
+                            <li><strong>CPU:</strong> i386 compatible</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>MyOS</h4>
+                    <p>A lightweight x86 operating system developed for educational purposes and low-level experimentation.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="https://github.com/username/myos">GitHub Repository</a></li>
+                        <li><a href="https://wiki.osdev.org">OSDev Wiki</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://forum.osdev.org">OSDev Forum</a></li>
+                        <li><a href="https://discord.gg/osdev">Discord</a></li>
+                        <li><a href="mailto:contact@myos.dev">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MyOS Project. Released under MIT License.</p>
+                <div class="social-links">
+                    <a href="#"><img src="images/github-icon.svg" alt="GitHub"></a>
+                    <a href="#"><img src="images/twitter-icon.svg" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/particles.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

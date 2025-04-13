@@ -349,3 +349,353 @@ footer {
         background-color: var(--text);
     }
 }
+
+/* Features Page Styles */
+.page-header {
+    padding: 120px 0 60px;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.feature-showcase {
+    padding: 60px 0;
+}
+
+.feature-card {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.feature-icon {
+    flex: 0 0 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(74, 107, 255, 0.1);
+    border-radius: 50%;
+}
+
+.feature-icon img {
+    width: 40px;
+}
+
+.feature-content {
+    flex: 1;
+}
+
+.feature-list {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.feature-list li {
+    margin-bottom: 8px;
+}
+
+.tech-specs {
+    padding: 60px 0;
+    background-color: #f8fafc;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.spec-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.spec-card h3 {
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+/* Documentation Page Styles */
+.docs-container {
+    display: flex;
+    padding: 40px 0;
+}
+
+.docs-sidebar {
+    flex: 0 0 250px;
+    padding-right: 30px;
+    position: sticky;
+    top: 120px;
+    align-self: flex-start;
+}
+
+.docs-nav {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.docs-nav li {
+    margin-bottom: 10px;
+}
+
+.docs-nav a {
+    display: block;
+    padding: 8px 15px;
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.docs-nav a:hover, .docs-nav a.active {
+    color: var(--primary);
+    background-color: rgba(74, 107, 255, 0.1);
+}
+
+.docs-content {
+    flex: 1;
+    padding-bottom: 60px;
+}
+
+.docs-section {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.docs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.docs-table th, .docs-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.docs-table th {
+    background-color: #f8fafc;
+    font-weight: 500;
+}
+
+.boot-process-diagram {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.boot-stage {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    padding: 20px;
+    margin: 10px 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.stage-number {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.boot-arrow {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+.api-function {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.api-function h4 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+/* Downloads Page Styles */
+.download-options {
+    padding: 60px 0;
+    display: flex;
+}
+
+.download-card {
+    flex: 1;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-width: 700px;
+}
+
+.download-badge {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    transform: translateY(-50%);
+    background-color: var(--primary);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.download-meta {
+    margin: 15px 0;
+}
+
+.tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background-color: #e2e8f0;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-right: 10px;
+}
+
+.download-links {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.download-links .btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.download-links img {
+    width: 16px;
+}
+
+.checksum {
+    background-color: #f8fafc;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.9rem;
+}
+
+.version-info {
+    flex: 1;
+    padding: 0 40px;
+}
+
+.previous-releases {
+    padding: 60px 0;
+    background-color: #f8fafc;
+}
+
+.releases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.release-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.release-date {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.build-from-source {
+    padding: 60px 0;
+}
+
+.build-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.build-step {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.btn.small {
+    padding: 6px 15px;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .docs-container {
+        flex-direction: column;
+    }
+    
+    .docs-sidebar {
+        position: static;
+        margin-bottom: 40px;
+        padding-right: 0;
+    }
+    
+    .feature-card {
+        flex-direction: column;
+    }
+    
+    .download-options {
+        flex-direction: column;
+    }
+    
+    .version-info {
+        padding: 40px 0 0;
+    }
+}

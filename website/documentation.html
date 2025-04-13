@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - MyOS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/MB.png">
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <header class="fade-in">
+        <div class="container">
+            <div class="logo">
+                <img src="images/MB.png" alt="MB OS Logo">
+                <span>MB OS</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="documentation.html" class="active">Docs</a></li>
+                    <li><a href="downloads.html" class="btn">Download</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header slide-up">
+            <div class="container">
+                <h1>MyOS Documentation</h1>
+                <p class="subtitle">Learn how to build, run, and develop for MyOS</p>
+            </div>
+        </section>
+
+        <section class="docs-container">
+            <div class="container">
+                <div class="docs-sidebar fade-in">
+                    <h3>Table of Contents</h3>
+                    <ul class="docs-nav">
+                        <li><a href="#getting-started" class="active">Getting Started</a></li>
+                        <li><a href="#building">Building MyOS</a></li>
+                        <li><a href="#boot-process">Boot Process</a></li>
+                        <li><a href="#kernel-api">Kernel API</a></li>
+                        <li><a href="#memory-management">Memory Management</a></li>
+                        <li><a href="#driver-development">Driver Development</a></li>
+                        <li><a href="#contributing">Contributing</a></li>
+                    </ul>
+                </div>
+
+                <div class="docs-content">
+                    <article id="getting-started" class="docs-section slide-up">
+                        <h2>Getting Started</h2>
+                        <p>This guide will help you set up the development environment and run MyOS for the first time.</p>
+                        
+                        <h3>Prerequisites</h3>
+                        <ul>
+                            <li>Linux or macOS (Windows requires WSL)</li>
+                            <li>NASM assembler (version 2.13+)</li>
+                            <li>GCC cross-compiler (i686-elf target)</li>
+                            <li>QEMU or Bochs emulator</li>
+                            <li>Git for version control</li>
+                        </ul>
+
+                        <h3>Quick Start</h3>
+                        <pre><code class="language-bash"># Clone the repository
+git clone https://github.com/username/myos.git
+cd myos
+
+# Build the system
+make all
+
+# Run in QEMU
+make run</code></pre>
+                    </article>
+
+                    <article id="building" class="docs-section slide-up delay-1">
+                        <h2>Building MyOS</h2>
+                        <p>MyOS uses a simple Makefile-based build system that compiles all components and creates a bootable disk image.</p>
+
+                        <h3>Build Targets</h3>
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Target</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>make all</code></td>
+                                    <td>Build everything (default target)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>make bootloader</code></td>
+                                    <td>Build only the bootloader</td>
+                                </tr>
+                                <tr>
+                                    <td><code>make kernel</code></td>
+                                    <td>Build only the kernel</td>
+                                </tr>
+                                <tr>
+                                    <td><code>make clean</code></td>
+                                    <td>Clean all build artifacts</td>
+                                </tr>
+                                <tr>
+                                    <td><code>make run</code></td>
+                                    <td>Build and run in QEMU</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>Cross-Compiler Setup</h3>
+                        <p>To build the kernel, you'll need a GCC cross-compiler targeting i686-elf:</p>
+                        <pre><code class="language-bash"># On Ubuntu/Debian
+sudo apt-get install gcc-multilib g++-multilib
+wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
+wget https://ftp.gnu.org/gnu/gcc/gcc-11.2.0/gcc-11.2.0.tar.xz
+# Follow cross-compiler setup instructions from OSDev wiki</code></pre>
+                    </article>
+
+                    <article id="boot-process" class="docs-section slide-up delay-2">
+                        <h2>Boot Process</h2>
+                        <p>Understanding the MyOS boot process is essential for development and debugging.</p>
+
+                        <div class="boot-process-diagram">
+                            <div class="boot-stage">
+                                <div class="stage-number">1</div>
+                                <h4>BIOS Loads Bootloader</h4>
+                                <p>Stage1 (512 bytes) loaded at 0x7C00</p>
+                            </div>
+                            <div class="boot-arrow">→</div>
+                            <div class="boot-stage">
+                                <div class="stage-number">2</div>
+                                <h4>Stage1 Loads Stage2</h4>
+                                <p>Reads FAT12, loads stage2 at 0x7E00</p>
+                            </div>
+                            <div class="boot-arrow">→</div>
+                            <div class="boot-stage">
+                                <div class="stage-number">3</div>
+                                <h4>Stage2 Initializes System</h4>
+                                <p>Detects memory, loads kernel at 1MB</p>
+                            </div>
+                            <div class="boot-arrow">→</div>
+                            <div class="boot-stage">
+                                <div class="stage-number">4</div>
+                                <h4>Kernel Takes Over</h4>
+                                <p>Enters protected mode, starts kernel_main()</p>
+                            </div>
+                        </div>
+
+                        <h3>Debugging the Boot Process</h3>
+                        <p>Use Bochs with debug symbols for low-level debugging:</p>
+                        <pre><code class="language-bash">bochs -f bochsrc.txt -q</code></pre>
+                        <p>Common debug commands:</p>
+                        <pre><code class="language-bash">b 0x7C00   # Break at bootloader start
+c          # Continue execution
+info registers
+x /16xb 0x7C00</code></pre>
+                    </article>
+
+                    <article id="kernel-api" class="docs-section slide-up delay-3">
+                        <h2>Kernel API</h2>
+                        <p>The MyOS kernel provides basic services through a simple API.</p>
+
+                        <h3>Core Functions</h3>
+                        <div class="api-function">
+                            <h4>print()</h4>
+                            <p>Output a string to the console</p>
+                            <pre><code class="language-c">void print(const char *str);</code></pre>
+                        </div>
+
+                        <div class="api-function">
+                            <h4>kmalloc() / kfree()</h4>
+                            <p>Basic memory allocation</p>
+                            <pre><code class="language-c">void *kmalloc(size_t size);
+void kfree(void *ptr);</code></pre>
+                        </div>
+
+                        <h3>Adding System Calls</h3>
+                        <p>To add a new system call:</p>
+                        <ol>
+                            <li>Add entry in syscall_table.asm</li>
+                            <li>Implement handler in kernel</li>
+                            <li>Add user-space wrapper</li>
+                        </ol>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>MyOS</h4>
+                    <p>A lightweight x86 operating system developed for educational purposes and low-level experimentation.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="https://github.com/miladbadeleh/MB-Operating-System">GitHub Repository</a></li>
+                        <li><a href="https://wiki.osdev.org">OSDev Wiki</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://forum.osdev.org">OSDev Forum</a></li>
+                        <li><a href="https://discord.gg/osdev">Discord</a></li>
+                        <li><a href="mailto:contact@myos.dev">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MyOS Project. Released under MIT License.</p>
+                <div class="social-links">
+                    <a href="#"><img src="images/github-icon.svg" alt="GitHub"></a>
+                    <a href="#"><img src="images/twitter-icon.svg" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/particles.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
