@@ -3,9 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MyOS - Lightweight x86 Operating System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/favicon.ico">
 </head>
 <body>
+    <div id="particles-js"></div>
     
+    <header class="fade-in">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.svg" alt="MyOS Logo">
+                <span>MyOS</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="documentation.html">Docs</a></li>
+                    <li><a href="downloads.html" class="btn">Download</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero slide-up">
+            <div class="container">
+                <div class="hero-text">
+                    <h1>A Minimal, Modern x86 Operating System</h1>
+                    <p class="subtitle">From bootloader to kernel - built for learning and experimentation</p>
+                    <div class="cta-buttons">
+                        <a href="downloads.html" class="btn primary">Get Started</a>
+                        <a href="documentation.html" class="btn secondary">View Docs</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/terminal-demo.png" alt="MyOS Terminal Demo" class="terminal-demo">
+                </div>
+            </div>
+        </section>
+
+        <section class="highlights">
+            <div class="container">
+                <div class="highlight-card fade-in">
+                    <div class="icon"><img src="images/cpu-icon.svg" alt="CPU"></div>
+                    <h3>Low-Level Performance</h3>
+                    <p>Direct hardware access with custom bootloader and minimal kernel</p>
+                </div>
+                <div class="highlight-card fade-in" style="animation-delay: 0.2s">
+                    <div class="icon"><img src="images/code-icon.svg" alt="Code"></div>
+                    <h3>Pure Assembly & C</h3>
+                    <p>Written in x86 assembly and C for maximum control</p>
+                </div>
+                <div class="highlight-card fade-in" style="animation-delay: 0.4s">
+                    <div class="icon"><img src="images/book-icon.svg" alt="Book"></div>
+                    <h3>Educational Focus</h3>
+                    <p>Perfect for learning OS development fundamentals</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="code-showcase">
+            <div class="container">
+                <h2 class="section-title">From the Source</h2>
+                <div class="code-tabs">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="bootloader">Bootloader</button>
+                        <button class="tab-btn" data-tab="memory">Memory</button>
+                        <button class="tab-btn" data-tab="kernel">Kernel</button>
+                    </div>
+                    <div class="tab-content active" id="bootloader">
+                        <pre><code class="language-nasm">; Stage 1 Bootloader
+[BITS 16]
+[ORG 0x7C00]
+
+start:
+    cli
+    xor ax, ax
+    mov ds, ax
+    mov es, ax
+    mov ss, ax
+    mov sp, 0x7C00
+    sti
+
+    ; Load stage2
+    mov si, msg_loading
+    call print_string
+
+    ; Read FAT12 structures
+    ; ... (more bootloader code)</code></pre>
+                    </div>
+                    <div class="tab-content" id="memory">
+                        <pre><code class="language-c">// Memory detection in C
+void detect_memory() {
+    struct memory_map_entry *map = (void*)0x5000;
+    uint32_t entries = detect_memory_e820(map);
+    
+    printf("Memory Map:\n");
+    for (uint32_t i = 0; i < entries; i++) {
+        printf("Region %d: 0x%llx - 0x%llx (%s)\n",
+               i, map[i].base, map[i].base + map[i].length,
+               map[i].type == 1 ? "Available" : "Reserved");
+    }
+}</code></pre>
+                    </div>
+                    <div class="tab-content" id="kernel">
+                        <pre><code class="language-c">// Kernel main function
+void kernel_main() {
+    init_terminal();
+    printf("MyOS Kernel v1.0\n");
+    
+    detect_cpu();
+    init_memory();
+    init_interrupts();
+    
+    while(1) {
+        // Kernel loop
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>MyOS</h4>
+                    <p>A lightweight x86 operating system developed for educational purposes and low-level experimentation.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="https://github.com/username/myos">GitHub Repository</a></li>
+                        <li><a href="https://wiki.osdev.org">OSDev Wiki</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://forum.osdev.org">OSDev Forum</a></li>
+                        <li><a href="https://discord.gg/osdev">Discord</a></li>
+                        <li><a href="mailto:contact@myos.dev">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MyOS Project. Released under MIT License.</p>
+                <div class="social-links">
+                    <a href="#"><img src="images/github-icon.svg" alt="GitHub"></a>
+                    <a href="#"><img src="images/twitter-icon.svg" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/particles.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
