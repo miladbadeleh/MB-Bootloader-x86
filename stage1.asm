@@ -1,12 +1,11 @@
-; Stage 1 Bootloader (FAT12)
+; Stage 1 Bootloader with Enhanced Features
 [BITS 16]
 [ORG 0x7C00]
 
-; FAT12 BIOS Parameter Block (BPB)
+; FAT12 BPB
 jmp short start
 nop
 
-; FAT12 BPB
 bpb_oem:            db 'MYOS    '
 bpb_bytes_per_sect: dw 512
 bpb_sects_per_clust:db 1
@@ -28,7 +27,6 @@ bpb_volume_label:   db 'MYOS VOLUME'
 bpb_file_system:    db 'FAT12   '
 
 start:
-    ; Set up segment registers
     cli
     xor ax, ax
     mov ds, ax
@@ -40,17 +38,30 @@ start:
     ; Save boot drive
     mov [bpb_drive_num], dl
 
-    ; Load stage 2 bootloader
+    ; Check extensions present
+    mov ah, 0x41
+    mov bx, 0x55AA
+    int 0x13
+    jc .no_extensions
+    cmp bx, 0xAA55
+    jne .no_extensions
+    test cl, 1
+    jz .no_extensions
+    mov byte [extensions_present], 1
+
+.no_extensions:
+    ; Load stage2
     mov si, msg_loading
     call print_string
 
     ; Read root directory
-    mov ax, 19          ; First sector of root directory
-    mov cx, 14          ; Number of sectors to read
-    mov bx, buffer      ; Destination buffer
+    mov ax, 19
+    mov cx, 14
+    mov bx, buffer
     call read_sectors
+    jc disk_error
 
-    ; Search for stage2 file
+    ; Search for stage2
     mov cx, [bpb_root_entries]
     mov di, buffer
 
@@ -73,16 +84,17 @@ start:
 
 .found_file:
     ; Get first cluster
-    mov ax, [di + 26]   ; First cluster in directory entry
+    mov ax, [di + 26]
     mov [cluster], ax
 
     ; Read FAT
-    mov ax, 1           ; First sector of FAT
+    mov ax, 1
     mov cx, [bpb_sects_per_fat]
     mov bx, buffer
     call read_sectors
+    jc disk_error
 
-    ; Load stage2 at 0x7E00 (right after bootloader)
+    ; Load stage2 at 0x7E00
     mov bx, 0x7E00
     mov es, bx
     xor bx, bx
@@ -96,16 +108,17 @@ start:
     mov ds, bx
     xor bx, bx
     call read_sectors
+    jc disk_error
     mov bx, ds
     mov es, bx
-    mov ds, ax          ; Restore DS (AX was clobbered)
+    mov ds, ax
 
     ; Get next cluster
     mov ax, [cluster]
     mov cx, ax
     mov dx, ax
     shr dx, 1
-    add ax, dx          ; AX = cluster * 1.5
+    add ax, dx
     mov si, buffer
     add si, ax
     mov ax, [si]
@@ -113,16 +126,16 @@ start:
     test cx, 1
     jnz .odd_cluster
 .even_cluster:
-    and ax, 0x0FFF      ; Mask for even cluster
+    and ax, 0x0FFF
     jmp .next_cluster
 .odd_cluster:
-    shr ax, 4           ; Mask for odd cluster
+    shr ax, 4
 .next_cluster:
-    cmp ax, 0x0FF8      ; End of chain?
+    cmp ax, 0x0FF8
     jae .end_of_file
     mov [cluster], ax
     mov ax, [bpb_bytes_per_sect]
-    shr ax, 4           ; AX = bytes per sector / 16 (paragraphs)
+    shr ax, 4
     add bx, ax
     mov es, bx
     jmp .load_file_loop
@@ -130,18 +143,28 @@ start:
 .end_of_file:
     ; Jump to stage2
     mov dl, [bpb_drive_num]
+    mov [boot_drive], dl
     jmp 0x7E00:0000
 
-; Includes for stage1
+disk_error:
+    mov si, msg_disk_error
+    call print_string
+    call print_hex_word    ; Print error code
+    jmp $
+
 %include "disk.inc"
 %include "print.inc"
+%include "memory.inc"
 
 ; Data
 stage2_name      db 'STAGE2  BIN'
-msg_loading      db 'Loading stage2...', 0x0D, 0x0A, 0
+kernel_name     db 'KERNEL  BIN'
+msg_loading     db 'Loading stage2...', 0x0D, 0x0A, 0
 msg_stage2_not_found db 'Stage2 not found!', 0
-cluster          dw 0
+msg_disk_error  db 'Disk error: ', 0
+cluster         dw 0
+boot_drive      db 0
+extensions_present db 0
 
-; Pad and add boot signature
 times 510-($-$$) db 0
 dw 0xAA55
